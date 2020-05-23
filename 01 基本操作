@@ -1,0 +1,5 @@
+# 安装package
+install.packages("PackageName")
+
+# 加载使用package
+library(PackageName)
