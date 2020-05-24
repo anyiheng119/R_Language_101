@@ -8,4 +8,24 @@ library(PackageName)
 
 # NEW
 
-# 修改测试2.0
+# 创建tibble
+> CO2_tibble <- as_tibble(CO2)
+> CO2_tibble
+
+# A tibble: 84 x 5
+   Plant Type   Treatment   conc uptake
+   <ord> <fct>  <fct>      <dbl>  <dbl>
+ 1 Qn1   Quebec nonchilled    95   16  
+ 2 Qn1   Quebec nonchilled   175   30.4
+ 3 Qn1   Quebec nonchilled   250   34.8
+ 4 Qn1   Quebec nonchilled   350   37.2
+ 5 Qn1   Quebec nonchilled   500   35.3
+ 6 Qn1   Quebec nonchilled   675   39.2
+ 7 Qn1   Quebec nonchilled  1000   39.7
+ 8 Qn2   Quebec nonchilled    95   13.6
+ 9 Qn2   Quebec nonchilled   175   27.3
+10 Qn2   Quebec nonchilled   250   37.1
+# ... with 74 more rows
+
+> print(CO2_tibble,n=20)    # 打印tibble前20行
+> print(CO2_tibble,n=Inf)   # 打印tibble所有行
