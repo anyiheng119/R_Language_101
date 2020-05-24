@@ -6,10 +6,9 @@ install.packages("PackageName")
 # 加载使用package
 library(PackageName)
 
-# NEW
 
 # 创建tibble
-> CO2_tibble <- as_tibble(CO2)
+> CO2_tibble <- as_tibble(CO2)    ## 将已有数据集转化为tibble，使用<- as_tibble()
 > CO2_tibble
 
 # A tibble: 84 x 5
@@ -29,3 +28,51 @@ library(PackageName)
 
 > print(CO2_tibble,n=20)    # 打印tibble前20行
 > print(CO2_tibble,n=Inf)   # 打印tibble所有行
+
+
+> name <- c("Mike","Renne","Matt","Chris","Ricky")     # 创建三个向量
+> birthyear <- c(2000, 2001, 2001, 2003, 2004)
+> eyecolor <- c("blue","brown","hazel","brown","blue")
+
+> people <- tibble(name, birthyear, eyecolor)       # 用变量创建tibble，使用<- tibble()
+> print(people)
+# A tibble: 5 x 3
+  name  birthyear eyecolor
+  <chr>     <dbl> <chr>   
+1 Mike       2000 blue    
+2 Renne      2001 brown   
+3 Matt       2001 hazel   
+4 Chris      2003 brown   
+5 Ricky      2004 blue 
+
+#从tibble中提取变量（从people中提取变量eyecolor）
+> people$eyecolor                            ## 三种等效操作：
+[1] "blue"  "brown" "hazel" "brown" "blue"   ## 使用 TibbleName $ VariableName
+
+> people[['eyecolor']]                       ## 使用 TibbleName[['VariableName']]
+[1] "blue"  "brown" "hazel" "brown" "blue" 
+
+> people[[3]]                                ## 使用 TibbleName[[数字]]   此处表示提取的变量在tibble中排第3位
+[1] "blue"  "brown" "hazel" "brown" "blue" 
+
+
+> unique(people$eyecolor)                    ## 提取变量可以嵌套在函数中使用
+[1] "blue"  "brown" "hazel"
+
+> unique(people[[3]])
+[1] "blue"  "brown" "hazel"
+
+#过滤tibble中的数据
+> filter(people, eyecolor == "blue" | birthyear > 2002)    ## 使用 filter(TibbleName, condition)
+# A tibble: 3 x 3                                          ## condition1 | condition2 表示OR关系
+  name  birthyear eyecolor
+  <chr>     <dbl> <chr>   
+1 Mike       2000 blue    
+2 Chris      2003 brown   
+3 Ricky      2004 blue    
+
+> filter(people, eyecolor == "blue" & birthyear > 2002)    ## condition1 & condition2 表示AND关系
+# A tibble: 1 x 3
+  name  birthyear eyecolor
+  <chr>     <dbl> <chr>   
+1 Ricky      2004 blue   
